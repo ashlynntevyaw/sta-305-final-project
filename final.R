@@ -32,11 +32,6 @@ ggplot(data = coffee, aes(x = Month_name, fill = )) +
   scale_fill_manual(values = c("Afternoon" = "#D6B588", "Morning" = "#705E46", "Night" = "#422701")) +
   labs(title = "Bar Distribution of Coffee Sales by Month and Season")
 
-# Box plot
-ggplot(data = coffee, aes(x = Weekday, y = Time_of_Day)) +
-  geom_boxplot(width = 0.3) +
-  theme_minimal()
-
 # Scatter plot
 ggplot(data = coffee, aes(x = hour_of_day, y = money, color = coffee_name)) +
   geom_point(alpha = 0.7, size = 2) +
