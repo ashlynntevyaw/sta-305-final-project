@@ -81,7 +81,9 @@ hour_summary_plot <- full_hours %>%
     by = "hour_of_day"
   )
 
-# Plot
+
+
+
 ggplot(hour_summary_plot, aes(x = hour_of_day, y = avg_sales)) +
   geom_line(color = "tan", linewidth = 1.2) +
   geom_point(color = "brown", size = 2) +
@@ -108,5 +110,6 @@ ggplot(weekly_sales, aes(x = as.numeric(week), y = avg_sales)) +
     y = "Average Sales"
   ) +
   theme_minimal()
+
 
 
