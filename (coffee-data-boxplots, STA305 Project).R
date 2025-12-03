@@ -1,6 +1,5 @@
 library(ggplot2)
 library(dplyr)
-library(knitr)
 
 month_order <- month_summary_df$Month_name
 
@@ -53,6 +52,7 @@ ggplot(coffee_clean, aes(x = factor(season, levels = season_order), y = money)) 
        x = "Season",
        y = "Sale Amount") +
   theme_minimal()
+
 
 
 
