@@ -4,6 +4,10 @@ library(dplyr)
 
 coffee <- read.csv("Coffee_sales.csv")
 
+###head data###
+options(tibble.width = Inf)
+head(coffee, 20) 
+
 summary(coffee)
 summary(coffee$money)
 summary(coffee$hour_of_day)
@@ -69,6 +73,7 @@ ggplot(weekly_sales, aes(x = as.numeric(week), y = avg_sales)) +
   geom_point() +
   labs(title = "Average Coffee Sales by Week",
     x = "Week Number", y = "Average Sales") + theme_minimal()
+
 
 
 
