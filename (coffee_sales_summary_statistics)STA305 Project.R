@@ -1,7 +1,7 @@
 library(ggplot2)
 library(tidyr)
 library(dplyr)
-library(knitr)
+
 
 
 coffee <- read.csv("Coffee_sales.csv")
@@ -41,7 +41,7 @@ hour_summary_full <- full_hours %>%
 hour_summary_full_df <- as.data.frame(hour_summary_full)
 
 
-kable(hour_summary_full_df, caption = "Coffee Sales by Hour of Day (AM/PM)")
+
 
 
 
@@ -54,7 +54,6 @@ weekday_summary_simple_df <- coffee %>%
   arrange(desc(avg_sales)) %>%
   as.data.frame()
 
-kable(weekday_summary_simple_df, caption = "Coffee Sales by Weekday")
 
 
 month_summary_df <- coffee %>%
@@ -67,7 +66,9 @@ month_summary_df <- coffee %>%
   arrange(desc(avg_sales)) %>%
   as.data.frame()
 
-kable(month_summary_df, caption = "Coffee Sales by Month")
+print(hour_summary_full_df)
+print(weekday_summary_simple_df)
+print(month_summary_df)
 
 
 
@@ -109,6 +110,7 @@ ggplot(weekly_sales, aes(x = as.numeric(week), y = avg_sales)) +
     y = "Average Sales"
   ) +
   theme_minimal()
+
 
 
 
