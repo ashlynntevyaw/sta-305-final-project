@@ -1,11 +1,10 @@
-library(readr)
 library(ggplot2)
 library(tidyr)
 library(dplyr)
 library(knitr)
 
 
-coffee <- read_csv("Coffee_sales.csv")
+coffee <- read.csv("Coffee_sales.csv")
 
 coffee
 str(coffee)
@@ -110,6 +109,7 @@ ggplot(weekly_sales, aes(x = as.numeric(week), y = avg_sales)) +
     y = "Average Sales"
   ) +
   theme_minimal()
+
 
 
 
