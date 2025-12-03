@@ -2,14 +2,8 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 
-
-
 coffee <- read.csv("Coffee_sales.csv")
-
-coffee
-str(coffee)
 summary(coffee)
-
 
 
 summary(coffee$money)
@@ -25,32 +19,23 @@ hour_summary_full <- full_hours %>%
       summarise(
         avg_sales = mean(money, na.rm = TRUE),
         transactions = n()
-      ), by = "hour_of_day"
-  ) %>%
+      ), by = "hour_of_day") %>%
   replace_na(list(avg_sales = NA, transactions = 0)) %>%
-  mutate(
-    time_label = ifelse(hour_of_day == 0, "12 AM",
+  mutate(time_label = ifelse(hour_of_day == 0, "12 AM",
                         ifelse(hour_of_day < 12, paste0(hour_of_day, " AM"),
                                ifelse(hour_of_day == 12, "12 PM",
-                                      paste0(hour_of_day - 12, " PM"))))
-  ) %>%
+                                      paste0(hour_of_day - 12, " PM"))))) %>%
   select(time_label, avg_sales, transactions) %>%
   arrange(desc(avg_sales))
 
 
 hour_summary_full_df <- as.data.frame(hour_summary_full)
 
-
-
-
-
-
 weekday_summary_simple_df <- coffee %>%
   group_by(Weekday) %>%
   summarise(
     avg_sales = mean(money, na.rm = TRUE),
-    transactions = n()
-  ) %>%
+    transactions = n()) %>%
   arrange(desc(avg_sales)) %>%
   as.data.frame()
 
@@ -61,8 +46,7 @@ month_summary_df <- coffee %>%
   summarise(
     avg_sales = mean(money, na.rm = TRUE),
     transactions = n(),
-    .groups = "drop"
-  ) %>%
+    .groups = "drop") %>%
   arrange(desc(avg_sales)) %>%
   as.data.frame()
 
@@ -72,16 +56,11 @@ print(month_summary_df)
 
 
 
-
 hour_summary_plot <- full_hours %>%
-  left_join(
-    coffee %>%
+  left_join(coffee %>%
       group_by(hour_of_day) %>%
       summarise(avg_sales = mean(money, na.rm = TRUE)),
-    by = "hour_of_day"
-  )
-
-
+    by = "hour_of_day")
 
 
 ggplot(hour_summary_plot, aes(x = hour_of_day, y = avg_sales)) +
@@ -104,12 +83,10 @@ weekly_sales <- coffee %>%
 ggplot(weekly_sales, aes(x = as.numeric(week), y = avg_sales)) +
   geom_line(color="brown") +
   geom_point() +
-  labs(
-    title = "Average Coffee Sales by Week",
+  labs(title = "Average Coffee Sales by Week",
     x = "Week Number",
-    y = "Average Sales"
-  ) +
-  theme_minimal()
+    y = "Average Sales") + theme_minimal()
+
 
 
 
